@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+data/*.sqlite3*
+tmp/
+output/
+.playwright-cli/
+docs/
+tests/
+Flowcharts/
