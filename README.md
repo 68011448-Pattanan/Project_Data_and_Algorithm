@@ -77,13 +77,4 @@ nginx/default.conf    Frontend static files and /api proxy
 REQUIREMENTS.md        Coverage and prototype limitations
 ```
 
-## Test
 
-```powershell
-.\.venv\Scripts\python -m pip install -r requirements-dev.txt
-.\.venv\Scripts\python -m unittest discover -s tests -v
-node --check static/app.js
-node --check static/lab-tools.js
-node --check static/academic.js
-docker compose -f docker-compose.yaml config --quiet
-```
