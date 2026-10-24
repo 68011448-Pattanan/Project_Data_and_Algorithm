@@ -398,12 +398,7 @@ function mapSvg() {
       : "";
   const dest = state.destinations.find((d) => d.floor === floor),
     destX = dest ? sx(dest.node[1]) : sx(cols + 1);
-  const arrows = [0, 3, 6, 9]
-    .map(
-      (y) =>
-        `<path d="M${sx(9)} ${sy(y)}h${y % 2 ? -32 : 32}" stroke="#bcc8b6" stroke-width="1.3" marker-end="url(#lane-arrow)"/>`,
-    )
-    .join("");
+  const arrows = "";
   return `<svg viewBox="0 0 ${W} ${H}" aria-label="Interactive parking map for floor ${f.name}" role="group"><defs><marker id="lane-arrow" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto"><path d="M0 0l5 3-5 3" fill="none" stroke="#b2c1af"/></marker><marker id="route-arrow" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0 0l5 2.5L0 5" fill="#36816b"/></marker></defs><rect x="12" y="24" width="976" height="411" rx="18" fill="#f2f6ed" stroke="#e2e9dd"/><path d="M40 45h920v367H40V45 M40 184h920 M40 225h920 M40 271h920" fill="none" stroke="#fff" stroke-width="21"/><path d="M40 45h920 M40 184h920 M40 271h920 M40 412h920" stroke="#e0e8d8" stroke-dasharray="4 7" fill="none"/>${arrows}${slots}<text x="17" y="15" fill="#85967e" font-size="10" letter-spacing="1">ZONE ${f.zone} · ${f.name}</text><rect x="9" y="211" width="78" height="28" rx="6" fill="#e1e9da"/><text x="48" y="229" text-anchor="middle" fill="#64805a" font-size="9">${floor === 0 ? "ENTRY / EXIT" : "FLOOR RAMP"}</text><rect x="904" y="210" width="78" height="30" rx="6" fill="#e4ecd9"/><text x="943" y="229" text-anchor="middle" fill="#658056" font-size="10">↑ LIFT / STAIRS</text>${dest ? `<circle cx="${destX}" cy="225" r="5" fill="#709363"/><text x="${Math.max(125, Math.min(840, destX))}" y="249" text-anchor="middle" fill="#6c855d" font-size="9">${esc(dest.name)}</text>` : ""}${explored}${path.length && animationStep < 0 ? `<path d="${pathData}" fill="none" stroke="#3d896f" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" marker-end="url(#route-arrow)"/><circle cx="${sx(path[0][1])}" cy="${sy(path[0][2])}" r="4" fill="#3d896f"/>` : ""}${step?.node[0] === floor ? `<circle cx="${sx(step.node[1])}" cy="${sy(step.node[2])}" r="6" fill="#2e806b"/>` : ""}<text x="20" y="448" fill="#8e9c84" font-size="8">${path.length ? `${role === "visitor" && page === "find" ? "Walking" : "Driving"} route · ${route.distance} m total${route.path.some((n) => n[0] !== floor) ? " · use the floor ramp to continue" : ""}` : "Select a bay to see its status and vehicle details."}</text><text x="978" y="448" text-anchor="end" fill="#8e9c84" font-size="8">N ↑</text></svg>`;
 }
 function occupancyChart() {
